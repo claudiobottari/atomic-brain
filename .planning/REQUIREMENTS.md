@@ -40,11 +40,16 @@ These features constitute the core value of AtomicBrain: a local-first, autonomo
 
 | Requirement | Phase | Success Criterion | Status |
 |-------------|-------|------------------|--------|
-| ING-01      | —     | —                | Pending |
-| SRCH-01     | —     | —                | Pending |
-| ORG-01      | —     | —                | Pending |
-| MCP-01      | —     | —                | Pending |
-| UI-01       | —     | —                | Pending |
+| ING-01      | Phase 1 | User can ingest PDF, DOCX, and Markdown files. | Pending |
+| ING-02      | Phase 1 | Each ingested file is converted to a Markdown "Concept" with metadata. | Pending |
+| SRCH-01     | Phase 2 | Search returns relevant concepts for natural language queries and keyword matches. | Pending |
+| SRCH-02     | Phase 2 | Search results include citations or direct links to original source files. | Pending |
+| ORG-01      | Phase 3 | LLM reasoning identifies core ideas and relationships from raw text. | Pending |
+| ORG-02      | Phase 3 | Concepts are organized into a multi-level folder hierarchy in the FS. | Pending |
+| MCP-01      | Phase 4 | External agents can query the knowledge base using MCP. | Pending |
+| MCP-02      | Phase 4 | MCP server provides specialized tools based on vault categories. | Pending |
+| UI-01       | Phase 5 | User can monitor status and search via a local web dashboard. | Pending |
+| UI-02       | Phase 1 | Vault is immediately usable in Obsidian. | Pending |
 
 ---
-*Last updated: April 15, 2026 after initialization*
+*Last updated: April 15, 2026 after roadmap creation*
