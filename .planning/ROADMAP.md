@@ -2,7 +2,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation & Ingestion** - Convert raw files to Obsidian-compatible Markdown concepts.
+- [x] **Phase 1: Foundation & Ingestion** - Convert raw files to Obsidian-compatible Markdown concepts.
 - [ ] **Phase 2: Indexing & Search** - Enable hybrid semantic and keyword search across ingested concepts.
 - [ ] **Phase 3: Autonomous Organization (The Brain)** - AI-driven concept extraction and hierarchical vault structuring.
 - [ ] **Phase 4: Agent Bridge (MCP)** - Connect knowledge base to external AI agents via MCP.
@@ -15,10 +15,15 @@
 **Depends on**: Nothing
 **Requirements**: ING-01, ING-02, UI-02
 **Success Criteria** (what must be TRUE):
-  1. User can ingest PDF, DOCX, and Markdown files through a designated ingestion path.
-  2. Each ingested file is converted to a Markdown "Concept" with standard YAML metadata (source, ID, type).
-  3. The resulting files are stored in a structure that is immediately usable in Obsidian.
-**Plans**: TBD
+  1. Python environment initialized with `uv` and all dependencies (`Docling`, `MarkItDown`, `FastAPI`, `Pydantic AI`).
+  2. Metadata schema for "Concepts" defined and validated via Pydantic.
+  3. Ingestion pipeline correctly converts PDF and DOCX to Markdown.
+  4. Ingested files are stored in a designated "Vault" directory with appropriate YAML frontmatter.
+  5. A CLI entry point `atomic-brain ingest <path>` exists and works.
+**Plans**: 
+  - [ ] Wave 1: Project Scaffolding & Schema
+  - [ ] Wave 2: Ingestion Pipeline (Docling + MarkItDown)
+  - [ ] Wave 3: CLI & Vault Integration
 **UI hint**: yes
 
 ### Phase 2: Indexing & Search
