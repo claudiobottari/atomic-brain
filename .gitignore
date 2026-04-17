@@ -1,0 +1,4 @@
+.gemini/
+.agent/
+.claude/
+.venv
