@@ -1,21 +1,17 @@
 import lancedb
+import numpy as np
 from pathlib import Path
 from lancedb.pydantic import LanceModel, Vector
-from lancedb.embeddings import get_registry
-
-# Initialize embedding model from registry (defaulting to bge-small-en-v1.5 via FastEmbed)
-registry = get_registry().get("fastembed")
-embedding_model = registry.create()
 
 class ConceptRecord(LanceModel):
     """LanceDB schema for AtomicBrain Concepts."""
     id: str
     title: str
-    content: str = embedding_model.SourceField()  # Field to be embedded
-    vector: Vector(embedding_model.ndims()) = embedding_model.VectorField()
+    content: str
+    vector: Vector(384) # BGE-small-en-v1.5 dimension
     source: str
     timestamp: str
-    tags: str  # Stored as comma-separated string for easier FTS
+    tags: str
 
 DB_PATH = Path(".lancedb")
 

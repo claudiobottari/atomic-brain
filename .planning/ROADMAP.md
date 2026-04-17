@@ -3,8 +3,8 @@
 ## Phases
 
 - [x] **Phase 1: Foundation & Ingestion** - Convert raw files to Obsidian-compatible Markdown concepts.
-- [ ] **Phase 2: Indexing & Search** - Enable hybrid semantic and keyword search across ingested concepts.
-- [ ] **Phase 3: Autonomous Organization (The Brain)** - AI-driven concept extraction and hierarchical vault structuring.
+- [x] **Phase 2: Indexing & Search** - Enable hybrid semantic and keyword search across ingested concepts.
+- [x] **Phase 3: Autonomous Organization (The Brain)** - AI-driven concept extraction and hierarchical vault structuring.
 - [ ] **Phase 4: Agent Bridge (MCP)** - Connect knowledge base to external AI agents via MCP.
 - [ ] **Phase 5: Human Dashboard (Web UI)** - Web interface for monitoring and exploration.
 
@@ -46,20 +46,32 @@
 **Depends on**: Phase 2
 **Requirements**: ORG-01, ORG-02
 **Success Criteria** (what must be TRUE):
-  1. LLM reasoning automatically identifies core ideas and relationships from raw text.
-  2. Concepts are automatically organized into a multi-level folder hierarchy without user intervention.
-  3. The hierarchical organization is reflected in the file system and compatible with Obsidian.
-**Plans**: TBD
+  1. Pydantic AI agents implemented for concept refinement and organization.
+  2. Concepts are successfully distilled into atomic units with enhanced metadata.
+  3. An autonomous organization logic moves files into a hierarchical folder structure.
+  4. File system moves are correctly synchronized with the LanceDB index.
+  5. A CLI entry point `atomic-brain organize` exists and works.
+**Plans**: 
+  - [ ] Wave 1: Concept Refinement Agent
+  - [ ] Wave 2: Organization & Hierarchical Move
+  - [ ] Wave 3: Integration & CLI
+**UI hint**: no
 
 ### Phase 4: Agent Bridge (MCP)
 **Goal**: Provide a standardized interface for external AI agents to access the knowledge base.
 **Depends on**: Phase 3
 **Requirements**: MCP-01, MCP-02
 **Success Criteria** (what must be TRUE):
-  1. External agents can query the knowledge base using the Model Context Protocol.
-  2. The MCP server provides specialized tools based on the vault's category structure.
-  3. Agent responses are grounded in the user's local vault data.
-**Plans**: TBD
+  1. MCP server implemented using the `mcp` Python SDK.
+  2. Standard tools (`search_concepts`, `get_concept_details`) functional.
+  3. Specialized tools dynamically registered based on vault categories.
+  4. Server connects successfully to an MCP host (e.g., Claude Desktop).
+  5. A CLI entry point `atomic-brain mcp` exists to start the server.
+**Plans**: 
+  - [ ] Wave 1: Core MCP Server
+  - [ ] Wave 2: Dynamic Tool Registration
+  - [ ] Wave 3: Integration & Deployment
+**UI hint**: no
 
 ### Phase 5: Human Dashboard (Web UI)
 **Goal**: Provide a centralized web interface for system monitoring and knowledge exploration.

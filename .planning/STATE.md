@@ -10,8 +10,8 @@
 
 ## Current Position
 
-**Phase**: 2 - Indexing & Search
-**Plan**: Wave 1: LanceDB & FastEmbed Setup
+**Phase**: 4 - Agent Bridge (MCP)
+**Plan**: Wave 1: Core MCP Server
 **Status**: Planned
 
 [....................] 0%
