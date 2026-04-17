@@ -31,11 +31,16 @@
 **Depends on**: Phase 1
 **Requirements**: SRCH-01, SRCH-02
 **Success Criteria** (what must be TRUE):
-  1. Search returns relevant concepts for natural language queries (vector search).
-  2. Search returns exact matches for specific keywords (BM25 search).
-  3. Search results include citations or direct links to the original source files.
-**Plans**: TBD
-
+  1. LanceDB initialized in `.lancedb/` with a schema compatible with `ConceptMetadata`.
+  2. FastEmbed integrated for automated embedding generation.
+  3. Ingestion pipeline automatically indexes new Concepts in LanceDB.
+  4. CLI entry point `atomic-brain search <query>` provides hybrid results.
+  5. Search results include the original source path and concept title.
+**Plans**: 
+  - [ ] Wave 1: LanceDB & FastEmbed Setup
+  - [ ] Wave 2: Automated Indexing
+  - [ ] Wave 3: Hybrid Search Implementation
+**UI hint**: no
 ### Phase 3: Autonomous Organization (The Brain)
 **Goal**: Use AI to autonomously extract concepts and organize them into a hierarchical vault.
 **Depends on**: Phase 2

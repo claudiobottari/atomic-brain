@@ -10,11 +10,11 @@
 
 ## Current Position
 
-**Phase**: 1 - Foundation & Ingestion
-**Plan**: Wave 3: CLI & Vault Integration
-**Status**: Complete
+**Phase**: 2 - Indexing & Search
+**Plan**: Wave 1: LanceDB & FastEmbed Setup
+**Status**: Planned
 
-[||||||||||||||||||||] 100%
+[....................] 0%
 
 ---
 
