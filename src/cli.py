@@ -12,8 +12,6 @@ from .converters.orchestrator import ConverterOrchestrator
 from .indexer import Indexer
 from .searcher import Searcher
 from .vault_manager import VaultManager
-from .agents.refinement import refine_concept
-from .agents.organization import suggest_organization
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -147,6 +145,9 @@ def organize(
     vault_path: Path = typer.Option(Path("vault/Concepts"), help="Vault path.")
 ):
     """Autonomously organize and optionally refine concepts."""
+    from .agents.refinement import refine_concept
+    from .agents.organization import suggest_organization
+
     if not vault_path.exists():
         typer.echo(f"Vault path not found: {vault_path}", err=True)
         return
@@ -156,7 +157,7 @@ def organize(
         files = list(vault_path.glob("*.md"))
         if not all_files:
             typer.echo("Hint: Use --all to process the entire vault.")
-            files = files[:5] # Limit to 5 for non-all
+            files = files[:5]
             
         existing_folders = vault_manager.get_existing_folders()
         
@@ -173,7 +174,6 @@ def organize(
                 content = parts[2].strip()
                 concept_id = meta_raw.get("id")
                 
-                # 1. Refinement (Optional)
                 if refine:
                     typer.echo("Refining concept content...")
                     refinement = await refine_concept(content)
@@ -181,13 +181,10 @@ def organize(
                     meta_raw["title"] = refinement.title
                     meta_raw["tags"] = list(set(meta_raw.get("tags", []) + refinement.suggested_tags))
                     
-                    # Update the file content immediately
                     new_concept = Concept(metadata=ConceptMetadata(**meta_raw), content=content)
                     file.write_text(new_concept.to_obsidian_markdown(), encoding="utf-8")
-                    # Update index with refined content
                     indexer.index(new_concept)
 
-                # 2. Suggest Organization
                 typer.echo("Categorizing...")
                 summary = content[:200]
                 org = await suggest_organization(summary, existing_folders)
@@ -200,6 +197,23 @@ def organize(
 
     asyncio.run(_run_organize())
     typer.echo("\nOrganization complete.")
+
+@app.command()
+def mcp():
+    """Start the Model Context Protocol (MCP) server."""
+    from .mcp_server import mcp as mcp_server
+    typer.echo("Starting AtomicBrain MCP server (stdio transport)...")
+    mcp_server.run()
+
+@app.command()
+def dashboard(
+    host: str = typer.Option("127.0.0.1", help="Host to bind."),
+    port: int = typer.Option(8000, help="Port to bind.")
+):
+    """Launch the Human Dashboard (Web UI)."""
+    import uvicorn
+    typer.echo(f"Launching AtomicBrain Dashboard at http://{host}:{port}")
+    uvicorn.run("src.api.main:app", host=host, port=port, reload=False)
 
 if __name__ == "__main__":
     app()

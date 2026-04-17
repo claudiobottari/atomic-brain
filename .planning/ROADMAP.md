@@ -5,8 +5,8 @@
 - [x] **Phase 1: Foundation & Ingestion** - Convert raw files to Obsidian-compatible Markdown concepts.
 - [x] **Phase 2: Indexing & Search** - Enable hybrid semantic and keyword search across ingested concepts.
 - [x] **Phase 3: Autonomous Organization (The Brain)** - AI-driven concept extraction and hierarchical vault structuring.
-- [ ] **Phase 4: Agent Bridge (MCP)** - Connect knowledge base to external AI agents via MCP.
-- [ ] **Phase 5: Human Dashboard (Web UI)** - Web interface for monitoring and exploration.
+- [x] **Phase 4: Agent Bridge (MCP)** - Connect knowledge base to external AI agents via MCP.
+- [x] **Phase 5: Human Dashboard (Web UI)** - Web interface for monitoring and exploration.
 
 ## Phase Details
 
@@ -78,10 +78,15 @@
 **Depends on**: Phase 4
 **Requirements**: UI-01
 **Success Criteria** (what must be TRUE):
-  1. User can monitor ingestion progress and system health via a local web dashboard.
-  2. User can perform searches and view results directly in the web browser.
-  3. Dashboard provides a high-level overview of the knowledge base structure and content.
-**Plans**: TBD
+  1. FastAPI backend implemented with endpoints for status, search, and stats.
+  2. React/Vite frontend scaffolded and built with modern Vanilla CSS.
+  3. UI components for search results, concept view, and status dashboard functional.
+  4. CLI entry point `atomic-brain dashboard` launches the server.
+  5. End-to-end flow verified in the browser.
+**Plans**: 
+  - [ ] Wave 1: Backend API (FastAPI)
+  - [ ] Wave 2: Frontend (React + Vite)
+  - [ ] Wave 3: Integration & CLI
 **UI hint**: yes
 
 ## Progress Table

@@ -32,7 +32,6 @@ def get_concept_details(concept_id: str) -> str:
     """
     try:
         table = get_concepts_table()
-        # Find by ID
         results = table.search().where(f"id = '{concept_id}'").limit(1).to_pydantic(ConceptRecord)
         
         if not results:
@@ -42,6 +41,58 @@ def get_concept_details(concept_id: str) -> str:
         return f"Title: {res.title}\nSource: {res.source}\nTimestamp: {res.timestamp}\nTags: {res.tags}\n\nContent:\n{res.content}"
     except Exception as e:
         return f"Error retrieving concept: {str(e)}"
+
+# Wave 2: Dynamic Tool Registration
+def register_dynamic_tools():
+    """Scans the vault and registers scoped search tools for each top-level category."""
+    vault_base = Path("vault/Concepts")
+    if not vault_base.exists():
+        return
+
+    categories = [p.name for p in vault_base.iterdir() if p.is_dir()]
+    
+    for category in categories:
+        tool_name = f"query_{category.lower().replace(' ', '_')}"
+        
+        # We need a closure to capture the category correctly
+        def create_tool(cat):
+            @mcp.tool(name=f"query_{cat.lower().replace(' ', '_')}")
+            def scoped_query(query: str, limit: int = 5) -> str:
+                # Use FTS to filter by source path containing the category
+                # Note: This is a simple implementation for MVP
+                try:
+                    table = get_concepts_table()
+                    # We use a combined vector + text search with a where clause on the source path
+                    query_vector = searcher.embedder.embed_query(query)
+                    
+                    # Normalize category for path matching
+                    cat_path_part = cat.replace('\\', '/')
+                    
+                    results = (
+                        table.search(query_vector)
+                        .text(query)
+                        .where(f"source LIKE '%/{cat_path_part}/%'")
+                        .limit(limit)
+                        .to_pydantic(ConceptRecord)
+                    )
+                    
+                    if not results:
+                        return f"No matching concepts found in category '{cat}'."
+                    
+                    output = []
+                    for res in results:
+                        output.append(f"Title: {res.title}\nID: {res.id}\nSnippet: {res.content[:200]}...\n---")
+                    
+                    return f"Results for '{query}' in {cat}:\n\n" + "\n".join(output)
+                except Exception as e:
+                    return f"Error searching category {cat}: {str(e)}"
+            
+            return scoped_query
+
+        create_tool(category)
+
+# Register tools on module load
+register_dynamic_tools()
 
 if __name__ == "__main__":
     mcp.run()
