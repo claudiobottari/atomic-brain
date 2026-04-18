@@ -1,0 +1,258 @@
+{
+  "nodes": [
+    {
+      "id": "favicon_atomicbrain_favicon",
+      "label": "AtomicBrain Favicon",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_lightning_bolt_shape",
+      "label": "Lightning Bolt / Stylized A Shape",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_glow_effect",
+      "label": "Volumetric Glow Effect (Blurred Ellipses)",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_color_purple_vivid",
+      "label": "Vivid Purple Brand Color (#863bff)",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_color_deep_purple",
+      "label": "Deep Purple Glow Color (#7e14ff)",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_color_lavender",
+      "label": "Lavender Highlight Color (#ede6ff)",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_color_cyan",
+      "label": "Electric Cyan Accent Color (#47bfff)",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_ui_branding",
+      "label": "AtomicBrain UI Branding",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "favicon_display_p3_colorspace",
+      "label": "Display-P3 Wide Gamut Color Space",
+      "file_type": "image",
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "favicon_atomicbrain_favicon",
+      "target": "favicon_lightning_bolt_shape",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_atomicbrain_favicon",
+      "target": "favicon_glow_effect",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_lightning_bolt_shape",
+      "target": "favicon_color_purple_vivid",
+      "relation": "uses_color",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_glow_effect",
+      "target": "favicon_color_deep_purple",
+      "relation": "uses_color",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_glow_effect",
+      "target": "favicon_color_lavender",
+      "relation": "uses_color",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_glow_effect",
+      "target": "favicon_color_cyan",
+      "relation": "uses_color",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_atomicbrain_favicon",
+      "target": "favicon_ui_branding",
+      "relation": "represents",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 0.95
+    },
+    {
+      "source": "favicon_atomicbrain_favicon",
+      "target": "favicon_display_p3_colorspace",
+      "relation": "uses_technology",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_lightning_bolt_shape",
+      "target": "favicon_ui_branding",
+      "relation": "is_part_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 0.9
+    },
+    {
+      "source": "favicon_color_purple_vivid",
+      "target": "favicon_ui_branding",
+      "relation": "defines_brand_color",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "favicon_color_cyan",
+      "target": "favicon_ui_branding",
+      "relation": "defines_accent_color",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "favicon_lightning_bolt_shape",
+      "target": "favicon_glow_effect",
+      "relation": "clips",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_display_p3_colorspace",
+      "target": "favicon_color_purple_vivid",
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_display_p3_colorspace",
+      "target": "favicon_color_deep_purple",
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "favicon_display_p3_colorspace",
+      "target": "favicon_color_cyan",
+      "relation": "encodes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "ui/public/favicon.svg",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
