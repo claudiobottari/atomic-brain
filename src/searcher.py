@@ -27,6 +27,9 @@ class Searcher:
             )
             return results
         except Exception as e:
-            # Fallback to vector search if hybrid fails
             logger.warning(f"Hybrid search failed, falling back to vector: {e}")
-            return self.table.search(query_vector).limit(limit).to_pydantic(ConceptRecord)
+            try:
+                return self.table.search(query_vector).limit(limit).to_pydantic(ConceptRecord)
+            except Exception as e2:
+                logger.error(f"Vector search also failed: {e2}")
+                return []

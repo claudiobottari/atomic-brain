@@ -7,11 +7,12 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional
 
-from .models import Concept, ConceptMetadata
-from .converters.orchestrator import ConverterOrchestrator
-from .indexer import Indexer
-from .searcher import Searcher
-from .vault_manager import VaultManager
+# Import directly, assuming src is in the Python path now
+from src.models import Concept, ConceptMetadata
+from src.converters.orchestrator import ConverterOrchestrator
+from src.indexer import Indexer
+from src.searcher import Searcher
+from src.vault_manager import VaultManager
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -35,15 +36,12 @@ def ingest(
         typer.echo(f"Error: File not found at {file_path}", err=True)
         raise typer.Exit(code=1)
     
-    # Ensure vault path exists
     vault_path.mkdir(parents=True, exist_ok=True)
     
     try:
-        # Step 1: Convert to Markdown content
         typer.echo(f"Ingesting: {file_path}")
         content = orchestrator.convert(file_path)
         
-        # Step 2: Generate Metadata
         concept_id = str(uuid.uuid4())
         final_title = title if title else file_path.stem
         tag_list = [t.strip() for t in tags.split(",")] if tags else []
@@ -56,11 +54,9 @@ def ingest(
             timestamp=datetime.utcnow()
         )
         
-        # Step 3: Create Concept and format as Obsidian Markdown
         concept = Concept(metadata=metadata, content=content)
         obsidian_md = concept.to_obsidian_markdown()
         
-        # Step 4: Save to Vault
         output_filename = f"{final_title}.md"
         output_path = vault_path / output_filename
         
@@ -71,7 +67,6 @@ def ingest(
         output_path.write_text(obsidian_md, encoding="utf-8")
         typer.echo(f"Saved to vault: {output_path}")
         
-        # Step 5: Index in LanceDB
         typer.echo("Indexing concept...")
         indexer.index(concept)
         typer.echo("Successfully indexed.")
@@ -98,7 +93,6 @@ def search(
         typer.echo(f"{i}. {res.title}")
         typer.echo(f"   Source: {res.source}")
         typer.echo(f"   ID: {res.id}")
-        # Show a snippet of content
         snippet = res.content[:150].replace("\n", " ") + "..."
         typer.echo(f"   Snippet: {snippet}")
         typer.echo("-" * 40)
@@ -129,7 +123,6 @@ def reindex(
             meta_raw = yaml.safe_load(parts[1])
             content = parts[2].strip()
             
-            # Reconstruct metadata and concept
             metadata = ConceptMetadata(**meta_raw)
             concept = Concept(metadata=metadata, content=content)
             
@@ -145,12 +138,12 @@ def organize(
     vault_path: Path = typer.Option(Path("vault/Concepts"), help="Vault path.")
 ):
     """Autonomously organize and optionally refine concepts."""
-    from .agents.refinement import refine_concept
-    from .agents.organization import suggest_organization
-
     if not vault_path.exists():
         typer.echo(f"Vault path not found: {vault_path}", err=True)
         return
+
+    from .agents.refinement import refine_concept
+    from .agents.organization import suggest_organization
 
     async def _run_organize():
         typer.echo("Starting autonomous organization...")
@@ -213,6 +206,9 @@ def dashboard(
     """Launch the Human Dashboard (Web UI)."""
     import uvicorn
     typer.echo(f"Launching AtomicBrain Dashboard at http://{host}:{port}")
+    if not Path("ui/dist").exists():
+        typer.echo("Frontend build not found. Please run 'npm run build' in the ui/ directory.", err=True)
+        raise typer.Exit(code=1)
     uvicorn.run("src.api.main:app", host=host, port=port, reload=False)
 
 if __name__ == "__main__":
